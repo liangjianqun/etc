@@ -1,0 +1,63 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+ulimit  -c unlimited
+
+#alias rm=trash
+alias cp='cp -r '
+alias ll='ls -lhG'
+alias rl='ls /data/liangjianqun/trash/'
+alias ur=undelfile
+alias rmcls=cleartrash
+
+alias relay='ssh -i ~/ssh/liangjianqun.txt 10.0.1.101 '
+alias 216='ssh 10.0.3.216'
+alias my='ssh 192.168.1.106'
+
+trash()
+{
+    mv $@ /data/liangjianqun/trash/
+}
+
+undelfile()
+{
+    mv -i /data/liangjianqun/trash/$@ ./
+}
+
+cleartrash()
+{
+    ls /data/liangjianqun/trash/
+    echo -n "rm all thease files!!! sure?[n]"
+    read I
+    [ $I == 'y' ] || [ $I == 'Y' ] && /bin/rm -rf /data/liangjianqun/trash/*
+}
+
+alias h=sshwithrsa
+sshwithrsa()
+{
+    ssh -i ~/.ssh/xxx_rsa liangjianqun@$@
+}
+alias p=scpwithrsa
+scpwithrsa()
+{
+    scp -i ~/.ssh/xxx_rsa $@
+}
+alias kk=kaifa
+kaifa()
+{
+    ssh -i ~/.ssh/xxx_rsa liangjianqun@10.0.3.218
+}
+alias aws='ssh -i ~/.ssh/sigapo-key.pem  ec2-user@52.74.26.66'
+alias grep='grep --color'
+export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/
+export PATH=$JAVA_HOME/bin:$PATH:/home/w/software/bhook-1.0.0/bin:/home/liangjianqun/software/ctags-5.8
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export M2_HOME=/Users/liangjianqun/software/apache-maven-3.2.3
+export M2=$M2_HOME/bin
+export MAVEN_OPTS="-Xms256m -Xmx512m"
+export GRADLE_HOME=/Users/liangjianqun/software/gradle-2.5
+export PATH=$GRADLE_HOME/bin:$M2:$PATH
+# User specific aliases and functions
